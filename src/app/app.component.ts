@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Debtor from './debtor';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'you-owe-me';
+
+  public debtors: Debtor[] = [
+    new Debtor('test1'),
+    new Debtor('test2')
+  ];
+
 }
