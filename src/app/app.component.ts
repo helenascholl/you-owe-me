@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DebtorService } from './debtor.service';
 import Debtor from './debtor';
 
 @Component({
@@ -6,11 +7,19 @@ import Debtor from './debtor';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  public debtors: Debtor[] = [
-    new Debtor('test1'),
-    new Debtor('test2')
-  ];
+  public debtors: Debtor[];
+
+  constructor(
+    public debtorService: DebtorService
+  ) {
+    this.debtors = [];
+  }
+
+   ngOnInit(): void {
+     this.debtorService.getDebtors()
+       .subscribe(debtors => this.debtors = debtors);
+   }
 
 }
