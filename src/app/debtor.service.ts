@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import Debtor from './debtor';
+import { DebtType } from './debt';
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,54 @@ export class DebtorService {
 
   constructor() {
     this.debtors = [
-      { id: 1, name: 'Test1', debts: [] },
-      { id: 2, name: 'Test2', debts: [] },
-      { id: 3, name: 'Test3', debts: [] }
+      {
+        id: 1,
+        name: 'Test1',
+        debts: [
+          {
+            amount: 3.50,
+            type: DebtType.MONTHLY,
+            since: new Date(2021, 1, 3),
+            lastPaid: new Date(2021, 1, 3)
+          },
+          {
+            amount: 4,
+            type: DebtType.DAILY,
+            since: new Date(2020, 9, 28),
+            lastPaid: new Date(2021, 3, 24)
+          }
+        ]
+      },
+      {
+        id: 2,
+        name: 'Test2',
+        debts: [
+          {
+            amount: 100,
+            type: DebtType.YEARLY,
+            since: new Date(2018, 3, 10),
+            lastPaid: new Date(2019, 10, 25)
+          }
+        ]
+      },
+      {
+        id: 3,
+        name: 'Test3',
+        debts: [
+          {
+            amount: 20,
+            type: DebtType.WEEKLY,
+            since: new Date(2020, 6, 4),
+            lastPaid: new Date(2021, 2, 4)
+          },
+          {
+            amount: 2.50,
+            type: DebtType.MONTHLY,
+            since: new Date(2018, 11, 18),
+            lastPaid: new Date(2020, 11, 20)
+          }
+        ]
+      }
     ];
   }
 
