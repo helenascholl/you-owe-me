@@ -1,1 +1,6 @@
 <h1>{{ debtor?.name }}</h1>
+
+<div *ngFor="let payment of getPayments()">
+  {{ payment.date.getFullYear() }}-{{ payment.date.getMonth() + 1 }}-{{ payment.date.getDate() }}:
+  {{ payment.amount }}€ ({{ payment.paid ? 'paid' : 'not paid' }})
+</div>
