@@ -1,13 +1,9 @@
 import { Debt } from './debt';
 
-export default class Debtor {
+export default interface Debtor {
 
-  public name: string;
-  public debts: Debt[];
-
-  constructor(name: string) {
-    this.name = name;
-    this.debts = [];
-  }
+  id: number;
+  name: string;
+  debts: Debt[];
 
 }
