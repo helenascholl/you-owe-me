@@ -5,14 +5,9 @@ export enum DebtType {
   YEARLY
 }
 
-export class Debt {
+export interface Debt {
 
-  public amount: number;
-  public type: DebtType;
-
-  constructor(amount: number, type: DebtType) {
-    this.amount = amount;
-    this.type = type;
-  }
+  amount: number;
+  type: DebtType;
 
 }
