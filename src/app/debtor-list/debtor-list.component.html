@@ -1,7 +1,8 @@
 <div>
   <mat-form-field>
     <mat-label>Add a Debtor</mat-label>
-    <input matInput placeholder="Name">
+    <input matInput placeholder="Name" [formControl]="debtorName">
+    <mat-error *ngIf="debtorName.invalid">You must enter a name</mat-error>
   </mat-form-field>
 
   <button mat-stroked-button color="primary" class="add-button">Add</button>

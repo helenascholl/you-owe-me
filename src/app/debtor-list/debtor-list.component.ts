@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DebtorService } from '../debtor.service';
 import { Debtor } from '../debtor';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-debtor-list',
@@ -10,6 +11,7 @@ import { Debtor } from '../debtor';
 export class DebtorListComponent implements OnInit {
 
   public debtors: Debtor[];
+  public debtorName = new FormControl('', [Validators.required]);
 
   constructor(
     public debtorService: DebtorService
