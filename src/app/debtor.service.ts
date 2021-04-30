@@ -9,6 +9,7 @@ import { DebtType } from './debt';
 export class DebtorService {
 
   private readonly debtors: Debtor[];
+  private currentId: number;
 
   constructor() {
     this.debtors = [
@@ -44,6 +45,7 @@ export class DebtorService {
         }
       ])
     ];
+    this.currentId = 1;
   }
 
   public getDebtors(): Observable<Debtor[]> {
@@ -52,6 +54,13 @@ export class DebtorService {
 
   public getDebtor(id: number): Observable<Debtor> {
     const debtor = this.debtors.find(d => d.id === id) as Debtor;
+    return of(debtor);
+  }
+
+  public addDebtor(name: string): Observable<Debtor> {
+    const debtor = new Debtor(this.currentId++, name);
+    this.debtors.push(debtor);
+
     return of(debtor);
   }
 
