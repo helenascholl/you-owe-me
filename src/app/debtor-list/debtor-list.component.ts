@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DebtorService } from '../debtor.service';
 import { Debtor } from '../debtor';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-debtor-list',
@@ -13,7 +14,8 @@ export class DebtorListComponent implements OnInit {
   public debtorName: string;
 
   constructor(
-    public debtorService: DebtorService
+    public debtorService: DebtorService,
+    public snackBar: MatSnackBar
   ) {
     this.debtors = [];
     this.debtorName = '';
@@ -28,6 +30,8 @@ export class DebtorListComponent implements OnInit {
     if (this.debtorName !== '') {
       this.debtorService.addDebtor(this.debtorName);
       this.debtorName = '';
+
+      this.snackBar.open('Added Debtor', 'Close', { duration: 2000 });
     }
   }
 
