@@ -5,6 +5,7 @@ import { DebtorService } from '../debtor.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-debt-list',
@@ -20,6 +21,7 @@ export class DebtListComponent {
   public debtType?: DebtType;
   public amount?: number;
   public dateString?: string;
+  public currencySymbol = environment.currencySymbol;
 
   constructor(
     public debtorService: DebtorService,

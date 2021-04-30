@@ -20,5 +20,5 @@
     </mat-card-title>
   </div>
   <mat-card-subtitle>{{ payment.date.toLocaleDateString() }}</mat-card-subtitle>
-  <mat-card-content>{{ payment.amount }}€</mat-card-content>
+  <mat-card-content>{{ payment.amount }}{{ currencySymbol }}</mat-card-content>
 </mat-card>

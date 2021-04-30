@@ -4,6 +4,7 @@ import { Debtor } from '../debtor';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-debtor-list',
@@ -14,6 +15,7 @@ export class DebtorListComponent implements OnInit {
 
   public debtors: Debtor[];
   public debtorName: string;
+  public currencySymbol = environment.currencySymbol;
 
   constructor(
     public debtorService: DebtorService,

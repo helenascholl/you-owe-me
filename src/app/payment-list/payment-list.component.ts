@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Debtor } from '../debtor';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-payment-list',
@@ -16,6 +17,7 @@ export class PaymentListComponent {
   public months: string[] = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
   ];
+  public currencySymbol = environment.currencySymbol;
 
   constructor(
     public snackBar: MatSnackBar
