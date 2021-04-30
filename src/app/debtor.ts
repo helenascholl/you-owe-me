@@ -4,11 +4,13 @@ export class Debtor {
 
   public id: number;
   public name: string;
+  public lastPaid: Date;
   public debts: Debt[];
 
-  constructor(id: number, name: string, debts: Debt[] = []) {
+  constructor(id: number, name: string, lastPaid: Date = new Date(), debts: Debt[] = []) {
     this.id = id;
     this.name = name;
+    this.lastPaid = lastPaid;
     this.debts = debts;
   }
 
@@ -23,22 +25,22 @@ export class Debtor {
       switch (debt.type) {
         case DebtType.DAILY:
           noOfPayments = (now.getTime() - debt.since.getTime()) / (1000 * 60 * 60 * 24);
-          noOfUnpaidPayments = (now.getTime() - debt.lastPaid.getTime()) / (1000 * 60 * 60 * 24) - 1;
+          noOfUnpaidPayments = (now.getTime() - this.lastPaid.getTime()) / (1000 * 60 * 60 * 24) - 1;
           break;
 
         case DebtType.WEEKLY:
           noOfPayments = (now.getTime() - debt.since.getTime()) / (1000 * 60 * 60 * 24 * 7);
-          noOfUnpaidPayments = (now.getTime() - debt.lastPaid.getTime()) / (1000 * 60 * 60 * 24 * 7);
+          noOfUnpaidPayments = (now.getTime() - this.lastPaid.getTime()) / (1000 * 60 * 60 * 24 * 7);
           break;
 
         case DebtType.MONTHLY:
           noOfPayments = (now.getFullYear() - debt.since.getFullYear()) * 12 - debt.since.getMonth() + now.getMonth();
-          noOfUnpaidPayments = (now.getFullYear() - debt.lastPaid.getFullYear()) * 12 - debt.lastPaid.getMonth() + now.getMonth();
+          noOfUnpaidPayments = (now.getFullYear() - this.lastPaid.getFullYear()) * 12 - this.lastPaid.getMonth() + now.getMonth();
           break;
 
         case DebtType.YEARLY:
           noOfPayments = now.getFullYear() - debt.since.getFullYear();
-          noOfUnpaidPayments = now.getFullYear() - debt.lastPaid.getFullYear();
+          noOfUnpaidPayments = now.getFullYear() - this.lastPaid.getFullYear();
           break;
       }
 

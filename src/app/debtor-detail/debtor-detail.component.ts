@@ -36,9 +36,7 @@ export class DebtorDetailComponent implements OnInit {
 
   public pay(): void {
     if (this.debtor) {
-      for (const debt of this.debtor.debts) {
-        debt.lastPaid = new Date(this.dateString);
-      }
+      this.debtor.lastPaid = new Date(this.dateString);
     }
   }
 

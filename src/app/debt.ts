@@ -10,6 +10,5 @@ export interface Debt {
   amount: number;
   type: DebtType;
   since: Date;
-  lastPaid: Date
 
 }

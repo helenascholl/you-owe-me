@@ -12,40 +12,35 @@ export class DebtorService {
 
   constructor() {
     this.debtors = [
-      new Debtor(1, 'Test1', [
+      new Debtor(1, 'Test1', new Date(2021, 1, 3), [
         {
           amount: 3.50,
           type: DebtType.MONTHLY,
-          since: new Date(2021, 1, 3),
-          lastPaid: new Date(2021, 1, 3)
+          since: new Date(2021, 1, 3)
         },
         {
           amount: 4,
           type: DebtType.DAILY,
-          since: new Date(2020, 9, 28),
-          lastPaid: new Date(2021, 3, 24)
+          since: new Date(2020, 9, 28)
         }
       ]),
-      new Debtor(2, 'Test2', [
+      new Debtor(2, 'Test2', new Date(2019, 10, 25), [
         {
           amount: 100,
           type: DebtType.YEARLY,
-          since: new Date(2018, 3, 10),
-          lastPaid: new Date(2019, 10, 25)
+          since: new Date(2018, 3, 10)
         }
       ]),
-      new Debtor(3, 'Test3', [
+      new Debtor(3, 'Test3', new Date(2020, 11, 20), [
         {
           amount: 20,
           type: DebtType.WEEKLY,
-          since: new Date(2020, 6, 4),
-          lastPaid: new Date(2021, 2, 4)
+          since: new Date(2020, 6, 4)
         },
         {
           amount: 2.50,
           type: DebtType.MONTHLY,
-          since: new Date(2018, 11, 18),
-          lastPaid: new Date(2020, 11, 20)
+          since: new Date(2018, 11, 18)
         }
       ])
     ];
