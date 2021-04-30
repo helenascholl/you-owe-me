@@ -29,7 +29,7 @@
     <span *ngSwitchCase="2">Monthly</span>
     <span *ngSwitchCase="3">Yearly</span>
 
-    <button mat-button class="delete">
+    <button mat-button class="delete" (click)="removeDebt(debt.id)">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-card-title>

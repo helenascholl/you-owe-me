@@ -3,6 +3,8 @@ import { Debtor } from '../debtor';
 import { DebtType } from '../debt';
 import { DebtorService } from '../debtor.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-debt-list',
@@ -21,7 +23,8 @@ export class DebtListComponent {
 
   constructor(
     public debtorService: DebtorService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   public addDebt() {
@@ -34,6 +37,20 @@ export class DebtListComponent {
 
       this.snackBar.open('Added Debt', 'Close', { duration: 2000 });
     }
+  }
+
+  public removeDebt(debtId: number) {
+    const deleteDialog = this.dialog.open(DeleteDialogComponent, {
+      width: '250px',
+      data: { name: 'Debt' }
+    });
+
+    deleteDialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.debtorService.removeDebt(debtId);
+        this.snackBar.open('Deleted Debt', 'Close', { duration: 2000 });
+      }
+    });
   }
 
   public addButtonDisabled(): boolean {

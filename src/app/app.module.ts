@@ -22,6 +22,8 @@ import { PaymentListComponent } from './payment-list/payment-list.component';
 import { DebtListComponent } from './debt-list/debt-list.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     DebtorDetailComponent,
     DebtorListComponent,
     PaymentListComponent,
-    DebtListComponent
+    DebtListComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     MatTabsModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
