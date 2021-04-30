@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Debtor } from './debtor';
-import { DebtType } from './debt';
+import { Debt, DebtType } from './debt';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +62,17 @@ export class DebtorService {
     this.debtors.push(debtor);
 
     return of(debtor);
+  }
+
+  public addDebt(debtorId: number, debt: Debt): Observable<Debt | null> {
+    const debtor = this.debtors.find(d => d.id === debtorId) ?? null;
+
+    if (debtor) {
+      debtor.debts.push(debt);
+      return of(debt);
+    }
+
+    return of(null);
   }
 
 }

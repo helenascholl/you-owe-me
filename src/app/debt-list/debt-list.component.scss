@@ -10,3 +10,25 @@ mat-card {
   width: 40vw;
   margin-bottom: 1em;
 }
+
+input {
+  -moz-appearance: textfield;
+}
+
+mat-form-field {
+  margin-right: 1em;
+}
+
+.amount {
+  width: 100px;
+}
+
+input[type=number] {
+  text-align: right;
+}
+
+.add-debt {
+  width: 25vw;
+  display: flex;
+  justify-content: space-between;
+}
