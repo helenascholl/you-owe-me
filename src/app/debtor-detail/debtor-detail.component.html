@@ -3,9 +3,9 @@
 <h1>{{ debtor?.name }}</h1>
 
 <mat-form-field>
-  <input matInput [matDatepicker]="picker" [value]="date" placeholder="Choose a date">
+  <input matInput [matDatepicker]="picker" [value]="date" placeholder="Choose a date" disabled>
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+  <mat-datepicker #picker disabled="false"></mat-datepicker>
 </mat-form-field>
 
 
