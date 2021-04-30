@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 2em;
+}
+
+mat-card {
+  width: 40vw;
+  margin-bottom: 1em;
+}
+
+.paid {
+  color: #9e9e9e;
+  text-decoration: line-through;
+}
+
+.pay-button {
+  margin-left: 1em;
+}

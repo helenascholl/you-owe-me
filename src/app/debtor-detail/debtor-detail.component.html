@@ -10,27 +10,8 @@
   <div></div>
 </header>
 
-<div>
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="dateString" placeholder="Choose a date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-
-  <button mat-stroked-button color="primary" (click)="pay()" class="pay-button">Pay</button>
-</div>
-
-<mat-card *ngFor="let payment of debtor?.getPayments()" [class.paid]="payment.paid">
-  <div [ngSwitch]="payment.debtType">
-    <mat-card-title *ngSwitchCase="2">
-      {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
-    </mat-card-title>
-    <mat-card-title *ngSwitchCase="3">{{ payment.date.getFullYear() }}</mat-card-title>
-    <mat-card-title *ngSwitchDefault>
-      {{ weekdays[payment.date.getDay()] }} {{ payment.date.getDate() }}.
-      {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
-    </mat-card-title>
-  </div>
-  <mat-card-subtitle>{{ payment.date.toLocaleDateString() }}</mat-card-subtitle>
-  <mat-card-content>{{ payment.amount }}€</mat-card-content>
-</mat-card>
+<mat-tab-group>
+  <mat-tab label="Debts">
+    <app-payment-list [debtor]="debtor"></app-payment-list>
+  </mat-tab>
+</mat-tab-group>

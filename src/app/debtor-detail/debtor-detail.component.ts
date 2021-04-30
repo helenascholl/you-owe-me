@@ -12,11 +12,6 @@ import { Location } from '@angular/common';
 export class DebtorDetailComponent implements OnInit {
 
   public debtor?: Debtor;
-  public dateString = new Date().toISOString();
-  public weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  public months: string[] = [
-    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
-  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -32,12 +27,6 @@ export class DebtorDetailComponent implements OnInit {
 
   public back(): void {
     this.location.back();
-  }
-
-  public pay(): void {
-    if (this.debtor) {
-      this.debtor.lastPaid = new Date(this.dateString);
-    }
   }
 
 }
