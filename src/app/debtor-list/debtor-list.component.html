@@ -11,7 +11,7 @@
 <mat-card *ngFor="let debtor of debtors" routerLink="/debtors/{{ debtor.id }}">
   <mat-card-title>
     <span>{{ debtor.name }}</span>
-    <button mat-button class="delete">
+    <button mat-button class="delete" (click)="removeDebtor($event, debtor.id)">
       <mat-icon>delete</mat-icon>
     </button>
   </mat-card-title>
