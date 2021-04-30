@@ -71,6 +71,17 @@ export class DebtorService {
     return of(debtor);
   }
 
+  public removeDebtor(id: number): Observable<Debtor | null> {
+    for (const debtor of this.debtors) {
+      if (debtor.id === id) {
+        this.debtors.splice(this.debtors.indexOf(debtor), 1);
+        return of(debtor);
+      }
+    }
+
+    return of(null);
+  }
+
   public addDebt(debtorId: number, amount: number, type: DebtType, since: Date): Observable<Debt | null> {
     const debtor = this.debtors.find(d => d.id === debtorId) ?? null;
 
