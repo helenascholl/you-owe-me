@@ -1,15 +1,25 @@
-<button mat-stroked-button color="primary" (click)="back()">Back</button>
+<div class="header">
+  <div class="back-button-wrapper">
+    <button mat-button (click)="back()">
+      <span class="material-icons">arrow_back</span>
+    </button>
+  </div>
 
-<h1>{{ debtor?.name }}</h1>
+  <h1>{{ debtor?.name }}</h1>
 
-<mat-form-field>
-  <input matInput [matDatepicker]="picker" [(ngModel)]="dateString" placeholder="Choose a date">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
+  <div></div>
+</div>
+
+<div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="dateString" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
 
-<button mat-stroked-button color="primary" (click)="pay()">Pay</button>
+  <button mat-stroked-button color="primary" (click)="pay()" class="pay-button">Pay</button>
+</div>
 
 <mat-card *ngFor="let payment of debtor?.getPayments()" [class.paid]="payment.paid">
   <div [ngSwitch]="payment.debtType">
