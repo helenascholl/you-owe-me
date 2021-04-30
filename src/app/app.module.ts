@@ -16,7 +16,7 @@ import { MAT_MOMENT_DATE_FORMATS, MatMomentDateModule, MomentDateAdapter } from 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PaymentListComponent } from './payment-list/payment-list.component';
 import { DebtListComponent } from './debt-list/debt-list.component';
@@ -55,7 +55,8 @@ import { LoginComponent } from './login/login.component';
     MatTabsModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: environment.locale },
