@@ -51,7 +51,8 @@ export class DebtorService {
         }
       ])
     ];
-    this.currentId = 1;
+    this.currentDebtorId = 1;
+    this.currentDebtId = 1;
   }
 
   public getDebtors(): Observable<Debtor[]> {
