@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DebtorService } from '../debtor.service';
 import Debtor from '../debtor';
 import { DebtType } from '../debt';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-debtor-detail',
@@ -20,7 +21,8 @@ export class DebtorDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private debtorService: DebtorService
+    private debtorService: DebtorService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -93,6 +95,10 @@ export class DebtorDetailComponent implements OnInit {
     }
 
     return payments.sort((p1, p2) => p2.date.getTime() - p1.date.getTime());
+  }
+
+  public back(): void {
+    this.location.back();
   }
 
 }
