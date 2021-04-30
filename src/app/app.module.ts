@@ -25,6 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { environment } from '../environments/environment';
     DebtorListComponent,
     PaymentListComponent,
     DebtListComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
