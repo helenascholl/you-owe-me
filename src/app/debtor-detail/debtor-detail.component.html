@@ -10,8 +10,18 @@
 <button mat-stroked-button color="primary">Pay</button>
 
 <mat-card *ngFor="let payment of getPayments()" [class.paid]="payment.paid">
-  <mat-card-title>{{ payment.amount }}€</mat-card-title>
-  <mat-card-content>
+  <div [ngSwitch]="payment.debtType">
+    <mat-card-title *ngSwitchCase="2">
+      {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
+    </mat-card-title>
+    <mat-card-title *ngSwitchCase="3">{{ payment.date.getFullYear() }}</mat-card-title>
+    <mat-card-title *ngSwitchDefault>
+      {{ weekdays[payment.date.getDay()] }} {{ payment.date.getDate() }}.
+      {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
+    </mat-card-title>
+  </div>
+  <mat-card-subtitle>
     {{ payment.date.getFullYear() }}-{{ payment.date.getMonth() + 1 }}-{{ payment.date.getDate() }}
-  </mat-card-content>
+  </mat-card-subtitle>
+  <mat-card-content>{{ payment.amount }}€</mat-card-content>
 </mat-card>
