@@ -40,7 +40,7 @@ export class DebtListComponent {
     return !this.amount
       || this.amount < 0
       || !this.debtType
-      || !this.dateString
+      || !this.dateString;
   }
 
 }
