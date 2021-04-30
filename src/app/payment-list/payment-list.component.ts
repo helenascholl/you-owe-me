@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Debtor } from '../debtor';
 
 @Component({
@@ -6,7 +6,7 @@ import { Debtor } from '../debtor';
   templateUrl: './payment-list.component.html',
   styleUrls: ['./payment-list.component.scss']
 })
-export class PaymentListComponent implements OnInit {
+export class PaymentListComponent {
 
   @Input()
   public debtor?: Debtor
@@ -15,11 +15,6 @@ export class PaymentListComponent implements OnInit {
   public months: string[] = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
   ];
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   public pay(): void {
     if (this.debtor) {
