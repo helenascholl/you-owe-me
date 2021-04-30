@@ -9,7 +9,7 @@
 </mat-form-field>
 
 
-<button mat-stroked-button color="primary">Pay</button>
+<button mat-stroked-button color="primary" (click)="pay()">Pay</button>
 
 <mat-card *ngFor="let payment of debtor?.getPayments()" [class.paid]="payment.paid">
   <div [ngSwitch]="payment.debtType">
