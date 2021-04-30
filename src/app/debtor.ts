@@ -23,7 +23,7 @@ export class Debtor {
       switch (debt.type) {
         case DebtType.DAILY:
           noOfPayments = (now.getTime() - debt.since.getTime()) / (1000 * 60 * 60 * 24);
-          noOfUnpaidPayments = (now.getTime() - debt.lastPaid.getTime()) / (1000 * 60 * 60 * 24);
+          noOfUnpaidPayments = (now.getTime() - debt.lastPaid.getTime()) / (1000 * 60 * 60 * 24) - 1;
           break;
 
         case DebtType.WEEKLY:
