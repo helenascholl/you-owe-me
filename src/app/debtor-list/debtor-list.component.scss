@@ -1,3 +1,12 @@
-div {
-  border: 1px solid black;
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+mat-card {
+  width: 40vw;
+  margin-bottom: 1em;
+  cursor: pointer;
 }
