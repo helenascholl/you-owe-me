@@ -80,7 +80,7 @@ export class Debtor {
   public getDebtSum(): number {
     return this.getPayments()
       .map(p => p.paid ? 0 : p.amount)
-      .reduce((a, b) => a + b);
+      .reduce((a, b) => a + b, 0);
   }
 
 }
