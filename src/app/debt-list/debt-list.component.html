@@ -9,7 +9,7 @@
 
   <mat-form-field class="amount">
     <input matInput placeholder="Amount" type="number" [(ngModel)]="amount">
-    <span matPrefix>{{ currencySymbol }}&nbsp;</span>
+    <span matPrefix>{{ environment.currencySymbol }}&nbsp;</span>
   </mat-form-field>
 
   <mat-form-field>
@@ -33,6 +33,6 @@
       <mat-icon>delete</mat-icon>
     </button>
   </mat-card-title>
-  <mat-card-subtitle>{{ debt.since.toLocaleDateString() }}</mat-card-subtitle>
-  <mat-card-content>{{ debt.amount }}{{ currencySymbol }}</mat-card-content>
+  <mat-card-subtitle>{{ debt.since.toLocaleDateString(environment.locale) }}</mat-card-subtitle>
+  <mat-card-content>{{ debt.amount }}{{ environment.currencySymbol }}</mat-card-content>
 </mat-card>

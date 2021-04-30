@@ -19,6 +19,6 @@
       {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
     </mat-card-title>
   </div>
-  <mat-card-subtitle>{{ payment.date.toLocaleDateString() }}</mat-card-subtitle>
-  <mat-card-content>{{ payment.amount }}{{ currencySymbol }}</mat-card-content>
+  <mat-card-subtitle>{{ payment.date.toLocaleDateString(environment.locale) }}</mat-card-subtitle>
+  <mat-card-content>{{ payment.amount }}{{ environment.currencySymbol }}</mat-card-content>
 </mat-card>

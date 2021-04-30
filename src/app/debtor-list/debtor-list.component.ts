@@ -15,7 +15,7 @@ export class DebtorListComponent implements OnInit {
 
   public debtors: Debtor[];
   public debtorName: string;
-  public currencySymbol = environment.currencySymbol;
+  public environment = environment;
 
   constructor(
     public debtorService: DebtorService,

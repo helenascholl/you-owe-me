@@ -21,7 +21,7 @@ export class DebtListComponent {
   public debtType?: DebtType;
   public amount?: number;
   public dateString?: string;
-  public currencySymbol = environment.currencySymbol;
+  public environment = environment;
 
   constructor(
     public debtorService: DebtorService,

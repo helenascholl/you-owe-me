@@ -17,7 +17,7 @@ export class PaymentListComponent {
   public months: string[] = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
   ];
-  public currencySymbol = environment.currencySymbol;
+  public environment = environment;
 
   constructor(
     public snackBar: MatSnackBar
