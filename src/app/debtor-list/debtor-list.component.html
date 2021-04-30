@@ -1,11 +1,11 @@
 <div>
   <mat-form-field>
     <mat-label>Add a Debtor</mat-label>
-    <input matInput placeholder="Name" [formControl]="debtorName">
-    <mat-error *ngIf="debtorName.invalid">You must enter a name</mat-error>
+    <input matInput placeholder="Name" [(ngModel)]="debtorName" (keypress)="keydown($event)">
   </mat-form-field>
 
-  <button mat-stroked-button color="primary" class="add-button">Add</button>
+  <button mat-stroked-button color="primary" (click)="addDebtor()"
+          class="add-button" [disabled]="debtorName === ''">Add</button>
 </div>
 
 <mat-card *ngFor="let debtor of debtors" routerLink="/debtors/{{ debtor.id }}">

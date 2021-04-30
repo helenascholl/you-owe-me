@@ -11,12 +11,13 @@ import { FormControl, Validators } from '@angular/forms';
 export class DebtorListComponent implements OnInit {
 
   public debtors: Debtor[];
-  public debtorName = new FormControl('', [Validators.required]);
+  public debtorName: string;
 
   constructor(
     public debtorService: DebtorService
   ) {
     this.debtors = [];
+    this.debtorName = '';
   }
 
   ngOnInit(): void {
@@ -25,8 +26,9 @@ export class DebtorListComponent implements OnInit {
   }
 
   public addDebtor(): void {
-    if (this.debtorName.valid) {
-      this.debtorService.addDebtor(this.debtorName.value);
+    if (this.debtorName !== '') {
+      this.debtorService.addDebtor(this.debtorName);
+      this.debtorName = '';
     }
   }
 
