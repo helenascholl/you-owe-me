@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DebtorService } from '../debtor.service';
-import Debtor from '../debtor';
+import { Debtor } from '../debtor';
 
 @Component({
   selector: 'app-debtor-list',

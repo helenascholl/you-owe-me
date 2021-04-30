@@ -11,7 +11,7 @@
 
 <button mat-stroked-button color="primary">Pay</button>
 
-<mat-card *ngFor="let payment of getPayments()" [class.paid]="payment.paid">
+<mat-card *ngFor="let payment of debtor?.getPayments()" [class.paid]="payment.paid">
   <div [ngSwitch]="payment.debtType">
     <mat-card-title *ngSwitchCase="2">
       {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
