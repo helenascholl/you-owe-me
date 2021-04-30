@@ -22,7 +22,7 @@ export class DebtorDetailComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.debtorService.getDebtor(id)
-      .subscribe(debtor => this.debtor = debtor);
+      .subscribe(debtor => this.debtor = debtor ?? undefined);
   }
 
   public back(): void {

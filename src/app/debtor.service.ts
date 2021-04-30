@@ -52,8 +52,8 @@ export class DebtorService {
     return of(this.debtors);
   }
 
-  public getDebtor(id: number): Observable<Debtor> {
-    const debtor = this.debtors.find(d => d.id === id) as Debtor;
+  public getDebtor(id: number): Observable<Debtor | null> {
+    const debtor = this.debtors.find(d => d.id === id) ?? null;
     return of(debtor);
   }
 
