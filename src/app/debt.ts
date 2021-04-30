@@ -7,6 +7,7 @@ export enum DebtType {
 
 export interface Debt {
 
+  id: number;
   amount: number;
   type: DebtType;
   since: Date;

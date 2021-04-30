@@ -26,11 +26,7 @@ export class DebtListComponent {
 
   public addDebt() {
     if (this.debtType && this.amount && this.dateString && this.debtor) {
-      this.debtorService.addDebt(this.debtor.id, {
-        amount: this.amount,
-        type: this.debtType,
-        since: new Date(this.dateString)
-      });
+      this.debtorService.addDebt(this.debtor.id, this.amount, this.debtType, new Date(this.dateString));
 
       this.debtType = undefined;
       this.amount = undefined;
