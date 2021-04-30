@@ -14,8 +14,7 @@ export class Debtor {
 
   public getPayments(): Payment[] {
     const payments: Payment[] = [];
-
-      const now = new Date();
+    const now = new Date();
 
     for (const debt of this.debts) {
       let noOfPayments = 0;
