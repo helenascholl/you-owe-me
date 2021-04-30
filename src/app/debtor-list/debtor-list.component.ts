@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DebtorService } from '../debtor.service';
 import { Debtor } from '../debtor';
-import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-debtor-list',
@@ -29,6 +28,12 @@ export class DebtorListComponent implements OnInit {
     if (this.debtorName !== '') {
       this.debtorService.addDebtor(this.debtorName);
       this.debtorName = '';
+    }
+  }
+
+  public keydown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      this.addDebtor();
     }
   }
 
