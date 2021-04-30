@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { PaymentListComponent } from './payment-list/payment-list.component';
 import { DebtListComponent } from './debt-list/debt-list.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     FormsModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },

@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Debtor } from '../debtor';
 import { DebtType } from '../debt';
 import { DebtorService } from '../debtor.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-debt-list',
@@ -18,7 +19,10 @@ export class DebtListComponent {
   public amount?: number;
   public dateString?: string;
 
-  constructor(public debtorService: DebtorService) { }
+  constructor(
+    public debtorService: DebtorService,
+    public snackBar: MatSnackBar
+  ) { }
 
   public addDebt() {
     if (this.debtType && this.amount && this.dateString && this.debtor) {
@@ -31,11 +35,13 @@ export class DebtListComponent {
       this.debtType = undefined;
       this.amount = undefined;
       this.dateString = undefined;
+
+      this.snackBar.open('Added Debt', 'Close', { duration: 2000 });
     }
   }
 
   public addButtonDisabled(): boolean {
-    return this.amount === undefined
+    return !this.amount
       || this.amount < 0
       || !this.debtType
       || !this.dateString
