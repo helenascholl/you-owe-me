@@ -9,7 +9,7 @@
 
 <button mat-stroked-button color="primary">Pay</button>
 
-<mat-card *ngFor="let payment of getPayments()">
+<mat-card *ngFor="let payment of getPayments()" [class.paid]="payment.paid">
   <mat-card-title>{{ payment.amount }}€</mat-card-title>
   <mat-card-content>
     {{ payment.date.getFullYear() }}-{{ payment.date.getMonth() + 1 }}-{{ payment.date.getDate() }}
