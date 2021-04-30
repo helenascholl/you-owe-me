@@ -1,0 +1,10 @@
+<mat-card *ngFor="let debt of debtor?.debts">
+  <div [ngSwitch]="debt.type">
+    <mat-card-title *ngSwitchCase="0">Daily</mat-card-title>
+    <mat-card-title *ngSwitchCase="1">Weekly</mat-card-title>
+    <mat-card-title *ngSwitchCase="2">Monthly</mat-card-title>
+    <mat-card-title *ngSwitchCase="3">Yearly</mat-card-title>
+  </div>
+  <mat-card-subtitle>{{ debt.since.toLocaleDateString() }}</mat-card-subtitle>
+  <mat-card-content>{{ debt.amount }}€</mat-card-content>
+</mat-card>

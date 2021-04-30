@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 2em;
+}
+
+mat-card {
+  width: 40vw;
+  margin-bottom: 1em;
+}

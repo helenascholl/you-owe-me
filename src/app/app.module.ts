@@ -19,13 +19,15 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PaymentListComponent } from './payment-list/payment-list.component';
+import { DebtListComponent } from './debt-list/debt-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DebtorDetailComponent,
     DebtorListComponent,
-    PaymentListComponent
+    PaymentListComponent,
+    DebtListComponent
   ],
   imports: [
     BrowserModule,
