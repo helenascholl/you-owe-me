@@ -12,6 +12,7 @@ import { DebtType } from '../debt';
 export class DebtorDetailComponent implements OnInit {
 
   public debtor?: Debtor;
+  public date = new Date();
 
   constructor(
     private route: ActivatedRoute,
