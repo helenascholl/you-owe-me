@@ -1,3 +1,4 @@
 <mat-card *ngFor="let debtor of debtors" routerLink="/debtors/{{ debtor.id }}">
   <mat-card-title>{{ debtor.name }}</mat-card-title>
+  <mat-card-content>{{ debtor.getDebtSum() }}€</mat-card-content>
 </mat-card>

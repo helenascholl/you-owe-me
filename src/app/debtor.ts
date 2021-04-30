@@ -77,6 +77,12 @@ export class Debtor {
     return payments.sort((p1, p2) => p2.date.getTime() - p1.date.getTime());
   }
 
+  public getDebtSum(): number {
+    return this.getPayments()
+      .map(p => p.paid ? 0 : p.amount)
+      .reduce((a, b) => a + b);
+  }
+
 }
 
 export interface Payment {
