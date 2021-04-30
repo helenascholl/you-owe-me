@@ -24,4 +24,10 @@ export class DebtorListComponent implements OnInit {
       .subscribe(debtors => this.debtors = debtors);
   }
 
+  public addDebtor(): void {
+    if (this.debtorName.valid) {
+      this.debtorService.addDebtor(this.debtorName.value);
+    }
+  }
+
 }
