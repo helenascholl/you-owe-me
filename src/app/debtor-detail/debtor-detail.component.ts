@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
 export class DebtorDetailComponent implements OnInit {
 
   public debtor?: Debtor;
-  public date = new Date();
+  public dateString = new Date().toISOString();
   public weekdays: string[] = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   public months: string[] = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
