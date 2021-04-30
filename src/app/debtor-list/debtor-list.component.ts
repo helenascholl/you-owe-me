@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DebtorService } from '../debtor.service';
 import { Debtor } from '../debtor';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-debtor-list',
@@ -15,7 +17,8 @@ export class DebtorListComponent implements OnInit {
 
   constructor(
     public debtorService: DebtorService,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) {
     this.debtors = [];
     this.debtorName = '';
@@ -39,6 +42,22 @@ export class DebtorListComponent implements OnInit {
     if (event.key === 'Enter') {
       this.addDebtor();
     }
+  }
+
+  public removeDebtor(event: MouseEvent, id: number): void {
+    event.stopPropagation();
+
+    const deleteDialog = this.dialog.open(DeleteDialogComponent, {
+      width: '250px',
+      data: { name: 'Debtor' }
+    });
+
+    deleteDialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.debtorService.removeDebtor(id);
+        this.snackBar.open('Deleted Debtor', 'Close', { duration: 2000 });
+      }
+    });
   }
 
 }
