@@ -23,12 +23,16 @@
 </div>
 
 <mat-card *ngFor="let debt of debtor?.debts">
-  <div [ngSwitch]="debt.type">
-    <mat-card-title *ngSwitchCase="0">Daily</mat-card-title>
-    <mat-card-title *ngSwitchCase="1">Weekly</mat-card-title>
-    <mat-card-title *ngSwitchCase="2">Monthly</mat-card-title>
-    <mat-card-title *ngSwitchCase="3">Yearly</mat-card-title>
-  </div>
+  <mat-card-title [ngSwitch]="debt.type">
+    <span *ngSwitchCase="0">Daily</span>
+    <span *ngSwitchCase="1">Weekly</span>
+    <span *ngSwitchCase="2">Monthly</span>
+    <span *ngSwitchCase="3">Yearly</span>
+
+    <button mat-button class="delete">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-title>
   <mat-card-subtitle>{{ debt.since.toLocaleDateString() }}</mat-card-subtitle>
   <mat-card-content>{{ debt.amount }}€</mat-card-content>
 </mat-card>
