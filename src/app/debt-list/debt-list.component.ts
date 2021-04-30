@@ -27,7 +27,7 @@ export class DebtListComponent {
     public dialog: MatDialog
   ) { }
 
-  public addDebt() {
+  public addDebt(): void {
     if (this.debtType && this.amount && this.dateString && this.debtor) {
       this.debtorService.addDebt(this.debtor.id, this.amount, this.debtType, new Date(this.dateString));
 
@@ -39,7 +39,7 @@ export class DebtListComponent {
     }
   }
 
-  public removeDebt(debtId: number) {
+  public removeDebt(debtId: number): void {
     const deleteDialog = this.dialog.open(DeleteDialogComponent, {
       width: '250px',
       data: { name: 'Debt' }
