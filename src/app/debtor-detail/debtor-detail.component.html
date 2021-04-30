@@ -22,8 +22,6 @@
       {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
     </mat-card-title>
   </div>
-  <mat-card-subtitle>
-    {{ payment.date.getFullYear() }}-{{ payment.date.getMonth() + 1 }}-{{ payment.date.getDate() }}
-  </mat-card-subtitle>
+  <mat-card-subtitle>{{ payment.date.toLocaleDateString() }}</mat-card-subtitle>
   <mat-card-content>{{ payment.amount }}€</mat-card-content>
 </mat-card>
