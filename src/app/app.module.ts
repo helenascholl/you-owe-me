@@ -26,6 +26,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { LoginComponent } from './login/login.component';
     MatSelectModule,
     MatSnackBarModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: environment.locale },

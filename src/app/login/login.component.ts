@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +14,35 @@ export class LoginComponent implements OnInit {
   public password = new FormControl('', Validators.required);
   public passwordHidden: boolean = true;
 
-  constructor() { }
+  constructor(
+    public fireAuth: AngularFireAuth,
+    public router: Router,
+    public zone: NgZone
+  ) { }
 
   ngOnInit(): void {
+    this.fireAuth.onAuthStateChanged(user => {
+      if (user) {
+        this.zone.run(() => this.router.navigate(['/debtors']));
+      }
+    });
   }
 
   public login(): void {
+    if (this.email.value && this.password.value) {
+      this.fireAuth.signInWithEmailAndPassword(this.email.value, this.password.value)
+        .catch(error => {
+          if (['auth/user-not-found', 'auth/invalid-email'].includes(error.code)) {
+            this.email.setErrors({ invalid: true });
+          } else if (error.code === 'auth/wrong-password') {
+            this.password.setErrors({ invalid: true });
+          }
+        });
+    } else if (this.email) {
+      this.email.setErrors({ invalid: true });
+    } else {
+      this.password.setErrors({ invalid: true });
+    }
   }
 
   public keydown(event: KeyboardEvent) {
