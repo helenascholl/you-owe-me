@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { environment } from '../../environments/environment';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-debtor-list',
@@ -20,7 +21,8 @@ export class DebtorListComponent implements OnInit {
   constructor(
     public debtorService: DebtorService,
     public snackBar: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public fireAuth: AngularFireAuth
   ) {
     this.debtors = [];
     this.debtorName = '';
@@ -60,6 +62,10 @@ export class DebtorListComponent implements OnInit {
         this.snackBar.open('Deleted Debtor', 'Close', { duration: 2000 });
       }
     });
+  }
+
+  public logout(): void {
+    this.fireAuth.signOut();
   }
 
 }
