@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 import { environment } from '../../environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-debtor-list',
@@ -14,7 +15,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class DebtorListComponent implements OnInit {
 
-  public debtors: Debtor[];
+  public debtors: Observable<Debtor[]>;
   public debtorName: string;
   public environment = environment;
 
@@ -24,13 +25,12 @@ export class DebtorListComponent implements OnInit {
     public dialog: MatDialog,
     public fireAuth: AngularFireAuth
   ) {
-    this.debtors = [];
     this.debtorName = '';
+    this.debtors = of([]);
   }
 
   ngOnInit(): void {
-    this.debtorService.getDebtors()
-      .subscribe(debtors => this.debtors = debtors);
+    this.debtors = this.debtorService.getDebtors();
   }
 
   public addDebtor(): void {

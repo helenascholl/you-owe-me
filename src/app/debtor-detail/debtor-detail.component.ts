@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DebtorService } from '../debtor.service';
 import { Debtor } from '../debtor';
 import { Location } from '@angular/common';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-debtor-detail',
@@ -11,18 +12,19 @@ import { Location } from '@angular/common';
 })
 export class DebtorDetailComponent implements OnInit {
 
-  public debtor?: Debtor;
+  public debtor: Observable<Debtor | null>;
 
   constructor(
     private route: ActivatedRoute,
     private debtorService: DebtorService,
     private location: Location
-  ) { }
+  ) {
+    this.debtor = of(null);
+  }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.debtorService.getDebtor(id)
-      .subscribe(debtor => this.debtor = debtor ?? undefined);
+    this.debtor = this.debtorService.getDebtor(id);
   }
 
   public back(): void {

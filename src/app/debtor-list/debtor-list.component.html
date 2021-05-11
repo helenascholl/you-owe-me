@@ -10,7 +10,7 @@
           class="add-button" [disabled]="debtorName === ''">Add</button>
 </div>
 
-<mat-card *ngFor="let debtor of debtors" routerLink="/debtors/{{ debtor.id }}">
+<mat-card *ngFor="let debtor of debtors | async" routerLink="/debtors/{{ debtor.id }}">
   <mat-card-title>
     <span>{{ debtor.name }}</span>
     <button mat-button class="delete" (click)="removeDebtor($event, debtor.id)">

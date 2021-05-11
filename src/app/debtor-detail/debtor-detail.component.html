@@ -5,16 +5,16 @@
     </button>
   </div>
 
-  <h1>{{ debtor?.name }}</h1>
+  <h1>{{ (debtor | async)?.name }}</h1>
 
   <div></div>
 </header>
 
 <mat-tab-group>
   <mat-tab label="Payments">
-    <app-payment-list [debtor]="debtor"></app-payment-list>
+    <app-payment-list [debtor]="(debtor | async) || undefined"></app-payment-list>
   </mat-tab>
   <mat-tab label="Debts">
-    <app-debt-list [debtor]="debtor"></app-debt-list>
+    <app-debt-list [debtor]="(debtor | async) || undefined"></app-debt-list>
   </mat-tab>
 </mat-tab-group>

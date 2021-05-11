@@ -48,8 +48,8 @@ export class DebtListComponent {
     });
 
     deleteDialog.afterClosed().subscribe(result => {
-      if (result) {
-        this.debtorService.removeDebt(debtId);
+      if (this.debtor && result) {
+        this.debtorService.removeDebt(this.debtor.id, debtId);
         this.snackBar.open('Deleted Debt', 'Close', { duration: 2000 });
       }
     });
