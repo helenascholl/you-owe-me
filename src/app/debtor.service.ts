@@ -1,116 +1,184 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, Subscription } from 'rxjs';
 import { Debtor } from './debtor';
 import { Debt, DebtType } from './debt';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DebtorService {
 
-  private readonly debtors: Debtor[];
+  private readonly debtors: Subject<Debtor[]>;
   private currentDebtorId: number;
   private currentDebtId: number;
+  private debtorSubscription: Subscription;
 
-  constructor() {
-    this.debtors = [
-      new Debtor(1, 'Test1', new Date(2021, 1, 3), [
-        {
-          id: 1,
-          amount: 3.50,
-          type: DebtType.MONTHLY,
-          since: new Date(2021, 1, 3)
-        },
-        {
-          id: 2,
-          amount: 4,
-          type: DebtType.DAILY,
-          since: new Date(2020, 9, 28)
-        }
-      ]),
-      new Debtor(2, 'Test2', new Date(2019, 10, 25), [
-        {
-          id: 3,
-          amount: 100,
-          type: DebtType.YEARLY,
-          since: new Date(2018, 3, 10)
-        }
-      ]),
-      new Debtor(3, 'Test3', new Date(2020, 11, 20), [
-        {
-          id: 4,
-          amount: 20,
-          type: DebtType.WEEKLY,
-          since: new Date(2020, 6, 4)
-        },
-        {
-          id: 5,
-          amount: 2.50,
-          type: DebtType.MONTHLY,
-          since: new Date(2018, 11, 18)
-        }
-      ])
-    ];
+  constructor(
+    public db: AngularFireDatabase,
+    public fireAuth: AngularFireAuth
+  ) {
+    this.debtorSubscription = new Subscription();
     this.currentDebtorId = 1;
     this.currentDebtId = 1;
+    this.debtors = new Subject<Debtor[]>();
   }
 
   public getDebtors(): Observable<Debtor[]> {
-    return of(this.debtors);
+    const debtors = new Subject<Debtor[]>();
+
+    this.fireAuth.user
+      .subscribe(user => {
+        if (user) {
+          this.db.list<Debtor>(`users/${user.uid}/debtors`)
+            .valueChanges()
+            .pipe(
+              map(debtors => debtors.map(this.parseDebtor))
+            )
+            .subscribe(d => debtors.next(d));
+        }
+      });
+
+    return debtors;
   }
 
   public getDebtor(id: number): Observable<Debtor | null> {
-    const debtor = this.debtors.find(d => d.id === id) ?? null;
-    return of(debtor);
-  }
+    const debtor = new Subject<Debtor | null>();
 
-  public addDebtor(name: string): Observable<Debtor> {
-    const debtor = new Debtor(this.currentDebtorId++, name);
-    this.debtors.push(debtor);
-
-    return of(debtor);
-  }
-
-  public removeDebtor(id: number): Observable<Debtor | null> {
-    for (const debtor of this.debtors) {
-      if (debtor.id === id) {
-        this.debtors.splice(this.debtors.indexOf(debtor), 1);
-        return of(debtor);
-      }
-    }
-
-    return of(null);
-  }
-
-  public addDebt(debtorId: number, amount: number, type: DebtType, since: Date): Observable<Debt | null> {
-    const debtor = this.debtors.find(d => d.id === debtorId) ?? null;
-
-    if (debtor) {
-      const debt = {
-        id: this.currentDebtId++,
-        amount: amount,
-        type: type,
-        since: since
-      };
-      debtor.debts.push(debt);
-
-      return of(debt);
-    }
-
-    return of(null);
-  }
-
-  public removeDebt(debtId: number): Observable<Debt | null> {
-    for (const debtor of this.debtors) {
-      for (const debt of debtor.debts) {
-        if (debt.id === debtId) {
-          debtor.debts.splice(debtor.debts.indexOf(debt), 1);
-          return of(debt);
+    this.fireAuth.user
+      .subscribe(user => {
+        if (user) {
+          this.db.list<Debtor>(`users/${user.uid}/debtors`)
+            .valueChanges()
+            .pipe(
+              map(debtors => debtors.map(this.parseDebtor)),
+              map(debtors => debtors.filter(debtor => debtor.id === id)[0])
+            )
+            .subscribe(d => debtor.next(d));
         }
-      }
-    }
+      });
 
-    return of(null);
+    return debtor;
   }
 
+  public addDebtor(name: string): void {
+    this.fireAuth.user
+      .subscribe(user => {
+        if (user) {
+          const subscription = this.db.list<Debtor>(`users/${user.uid}/debtors`)
+            .valueChanges()
+            .subscribe(debtors => {
+              let maxId = 0;
+
+              for (const debtor of debtors) {
+                if (debtor.id > maxId) {
+                  maxId = debtor.id;
+                }
+              }
+
+              this.db.list<Debtor>(`users/${user.uid}/debtors`)
+                .push(new Debtor(maxId + 1, name));
+
+              subscription.unsubscribe();
+            });
+        }
+      });
+  }
+
+  public removeDebtor(id: number): void {
+    this.fireAuth.user
+      .subscribe(user => {
+        if (user) {
+          const subscription = this.db.list<Debtor>(`users/${user.uid}/debtors`)
+            .snapshotChanges()
+            .subscribe(debtors => {
+              for (const debtor of debtors) {
+                if (debtor.payload.val()?.id === id) {
+                  this.db.list<Debtor>(`users/${user.uid}/debtors`)
+                    .remove(debtor.key ?? undefined);
+                }
+              }
+
+              subscription.unsubscribe();
+            });
+        }
+      });
+  }
+
+  public addDebt(debtorId: number, amount: number, type: DebtType, since: Date): void {
+    this.fireAuth.user
+      .subscribe(user => {
+        if (user) {
+          const list = this.db.list<Debtor>(`users/${user.uid}/debtors`);
+
+          const subscription = list
+            .snapshotChanges()
+            .subscribe(debtors => {
+              for (const debtorSnapshot of debtors) {
+                const debtor = debtorSnapshot.payload.val();
+
+                if (debtorSnapshot.key && debtor && debtor.id === debtorId) {
+                  const debts: Debt[] = debtor.debts ?? [];
+
+                  debts.push({
+                    id: debts.length > 0 ? debtor.debts[debts.length - 1].id + 1 : 1,
+                    amount: amount,
+                    type: type,
+                    since: since
+                  });
+
+                  list.update(debtorSnapshot.key, { debts: debts });
+                }
+              }
+
+              subscription.unsubscribe();
+            });
+        }
+      });
+  }
+
+  public removeDebt(debtorId: number, debtId: number): void {
+    this.fireAuth.user
+      .subscribe(user => {
+        if (user) {
+          const list = this.db.list<Debtor>(`users/${user.uid}/debtors`);
+
+          const subscription = list
+            .snapshotChanges()
+            .subscribe(debtors => {
+              for (const debtorSnapshot of debtors) {
+                const debtor = debtorSnapshot.payload.val();
+
+                if (debtorSnapshot.key && debtor && debtor.id === debtorId) {
+                  for (const debt of debtor.debts) {
+                    if (debt.id === debtId) {
+                      debtor.debts.splice(debtor.debts.indexOf(debt), 1);
+                    }
+                  }
+
+                  list.update(debtorSnapshot.key, { debts: debtor.debts });
+                }
+              }
+
+              subscription.unsubscribe();
+            });
+        }
+      });
+  }
+
+  private parseDebtor(debtor: Debtor): Debtor {
+    return new Debtor(debtor.id, debtor.name,debtor.lastPaid ? new Date(debtor.lastPaid): undefined, debtor.debts
+      ? debtor.debts.map(debt => {
+        return {
+          id: debt.id,
+          amount: debt.amount,
+          type: debt.type,
+          since: new Date(debt.since)
+        };
+      })
+      : undefined
+    );
+  }
 }
