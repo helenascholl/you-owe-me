@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Debtor } from './debtor';
 import { Debt, DebtType } from './debt';
 import { AngularFireDatabase } from '@angular/fire/database';
