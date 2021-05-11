@@ -169,7 +169,7 @@ export class DebtorService {
   }
 
   private parseDebtor(debtor: Debtor): Debtor {
-    return new Debtor(debtor.id, debtor.name,debtor.lastPaid ? new Date(debtor.lastPaid): undefined, debtor.debts
+    return new Debtor(debtor.id, debtor.name, new Date(debtor.lastPaid), debtor.debts
       ? debtor.debts.map(debt => {
         return {
           id: debt.id,
