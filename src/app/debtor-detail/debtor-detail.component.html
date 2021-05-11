@@ -1,5 +1,5 @@
 <header>
-  <div class="back-button-wrapper">
+  <div class="header-wrapper">
     <button mat-button (click)="back()">
       <mat-icon>arrow_back</mat-icon>
     </button>
@@ -7,7 +7,9 @@
 
   <h1>{{ (debtor | async)?.name }}</h1>
 
-  <div></div>
+  <div class="header-wrapper align-right">
+    <span>{{ (debtor | async)?.getDebtSum() }}{{ environment.currencySymbol }}</span>
+  </div>
 </header>
 
 <mat-tab-group>

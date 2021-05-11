@@ -1,6 +1,10 @@
-.back-button-wrapper {
+.header-wrapper {
   display: flex;
   align-items: center;
+}
+
+.align-right {
+  justify-content: right;
 }
 
 header {
@@ -10,4 +14,9 @@ header {
 
 h1 {
   text-align: center;
+}
+
+span {
+  padding: 0 16px;
+  font-size: 1.5em;
 }

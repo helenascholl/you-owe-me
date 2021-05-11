@@ -4,6 +4,7 @@ import { DebtorService } from '../debtor.service';
 import { Debtor } from '../debtor';
 import { Location } from '@angular/common';
 import { Observable, of } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-debtor-detail',
@@ -13,6 +14,7 @@ import { Observable, of } from 'rxjs';
 export class DebtorDetailComponent implements OnInit {
 
   public debtor: Observable<Debtor | null>;
+  public environment = environment;
 
   constructor(
     private route: ActivatedRoute,
