@@ -20,10 +20,10 @@ export class DebtorListComponent implements OnInit {
   public environment = environment;
 
   constructor(
-    public debtorService: DebtorService,
-    public snackBar: MatSnackBar,
-    public dialog: MatDialog,
-    public fireAuth: AngularFireAuth
+    private debtorService: DebtorService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog,
+    private fireAuth: AngularFireAuth
   ) {
     this.debtorName = '';
     this.debtors = of([]);

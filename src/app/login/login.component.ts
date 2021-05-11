@@ -15,9 +15,9 @@ export class LoginComponent implements OnInit {
   public passwordHidden: boolean = true;
 
   constructor(
-    public fireAuth: AngularFireAuth,
-    public router: Router,
-    public zone: NgZone
+    private fireAuth: AngularFireAuth,
+    private router: Router,
+    private zone: NgZone
   ) { }
 
   ngOnInit(): void {

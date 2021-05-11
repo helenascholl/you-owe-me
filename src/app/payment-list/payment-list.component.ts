@@ -20,7 +20,7 @@ export class PaymentListComponent {
   public environment = environment;
 
   constructor(
-    public snackBar: MatSnackBar
+    private snackBar: MatSnackBar
   ) { }
 
   public pay(): void {

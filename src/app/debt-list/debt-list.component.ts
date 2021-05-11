@@ -24,9 +24,9 @@ export class DebtListComponent {
   public environment = environment;
 
   constructor(
-    public debtorService: DebtorService,
-    public snackBar: MatSnackBar,
-    public dialog: MatDialog
+    private debtorService: DebtorService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   public addDebt(): void {

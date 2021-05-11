@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   constructor(
-    public fireAuth: AngularFireAuth,
-    public router: Router,
-    public zone: NgZone
+    private fireAuth: AngularFireAuth,
+    private router: Router,
+    private zone: NgZone
   ) { }
 
   ngOnInit(): void {

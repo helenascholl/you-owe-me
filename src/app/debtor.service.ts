@@ -17,8 +17,8 @@ export class DebtorService {
   private debtorSubscription: Subscription;
 
   constructor(
-    public db: AngularFireDatabase,
-    public fireAuth: AngularFireAuth
+    private db: AngularFireDatabase,
+    private fireAuth: AngularFireAuth
   ) {
     this.debtorSubscription = new Subscription();
     this.currentDebtorId = 1;
