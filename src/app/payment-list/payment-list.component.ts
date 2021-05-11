@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Debtor } from '../debtor';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../environments/environment';
+import { DebtorService } from '../debtor.service';
 
 @Component({
   selector: 'app-payment-list',
@@ -20,12 +21,13 @@ export class PaymentListComponent {
   public environment = environment;
 
   constructor(
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private debtorService: DebtorService
   ) { }
 
   public pay(): void {
     if (this.debtor) {
-      this.debtor.lastPaid = new Date(this.dateString);
+      this.debtorService.payDebts(this.debtor.id, new Date(this.dateString));
       this.snackBar.open('Paid Debts', 'Close', { duration: 2000 });
     }
   }
