@@ -1229,7 +1229,7 @@ class DebtorService {
         });
     }
     parseDebtor(debtor) {
-        return new _debtor__WEBPACK_IMPORTED_MODULE_1__["Debtor"](debtor.id, debtor.name, debtor.lastPaid ? new Date(debtor.lastPaid) : undefined, debtor.debts
+        return new _debtor__WEBPACK_IMPORTED_MODULE_1__["Debtor"](debtor.id, debtor.name, new Date(debtor.lastPaid), debtor.debts
             ? debtor.debts.map(debt => {
                 return {
                     id: debt.id,
