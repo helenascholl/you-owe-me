@@ -32,3 +32,18 @@ input[type=number] {
   display: flex;
   justify-content: space-between;
 }
+
+.input-column {
+  display: inline;
+}
+
+@media only screen and (max-aspect-ratio: 1/1) {
+  mat-card {
+    width: 70vw;
+  }
+
+  .input-column {
+    display: block;
+    margin-left: 1em;
+  }
+}

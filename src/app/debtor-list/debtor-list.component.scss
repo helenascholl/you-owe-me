@@ -20,3 +20,9 @@ mat-card {
   right: 1em;
   top: 1em;
 }
+
+@media only screen and (max-aspect-ratio: 1/1) {
+  mat-card {
+    width: 70vw;
+  }
+}

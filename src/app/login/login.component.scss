@@ -34,3 +34,9 @@ mat-form-field {
 .login-button {
   margin-top: 1em;
 }
+
+@media only screen and (max-aspect-ratio: 1/1) {
+  .login {
+    width: 70vw;
+  }
+}

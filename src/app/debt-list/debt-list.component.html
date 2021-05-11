@@ -1,25 +1,29 @@
 <div>
-  <mat-form-field>
-    <mat-select placeholder="Type" [(value)]="debtType">
-      <mat-option *ngFor="let debtType of debtTypes" [value]="debtType.index">
-        {{ debtType.value }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <div class="input-column column-1">
+    <mat-form-field>
+      <mat-select placeholder="Type" [(value)]="debtType">
+        <mat-option *ngFor="let debtType of debtTypes" [value]="debtType.index">
+          {{ debtType.value }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field class="amount">
-    <input matInput placeholder="Amount" type="number" [(ngModel)]="amount">
-    <span matPrefix>{{ environment.currencySymbol }}&nbsp;</span>
-  </mat-form-field>
+    <mat-form-field class="amount">
+      <input matInput placeholder="Amount" type="number" [(ngModel)]="amount">
+      <span matPrefix>{{ environment.currencySymbol }}&nbsp;</span>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="dateString" placeholder="Choose a start date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <div class="input-column column-2">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="dateString" placeholder="Choose a start date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
 
-  <button mat-stroked-button color="primary" class="add-button"
-          [disabled]="addButtonDisabled()" (click)="addDebt()">Add</button>
+    <button mat-stroked-button color="primary" class="add-button"
+            [disabled]="addButtonDisabled()" (click)="addDebt()">Add</button>
+  </div>
 </div>
 
 <mat-card *ngFor="let debt of debtor?.debts">
