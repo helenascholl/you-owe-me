@@ -168,6 +168,29 @@ export class DebtorService {
       });
   }
 
+  public payDebts(debtorId: number, date: Date) {
+    this.fireAuth.user
+      .subscribe(user => {
+        if (user) {
+          const list = this.db.list<Debtor>(`users/${user.uid}/debtors`);
+
+          const subscription = list
+            .snapshotChanges()
+            .subscribe(debtors => {
+              for (const debtorSnapshot of debtors) {
+                const debtor = debtorSnapshot.payload.val();
+
+                if (debtorSnapshot.key && debtor && debtor.id === debtorId) {
+                  list.update(debtorSnapshot.key, { lastPaid: date });
+                }
+              }
+
+              subscription.unsubscribe();
+            });
+        }
+      });
+  }
+
   private parseDebtor(debtor: Debtor): Debtor {
     return new Debtor(debtor.id, debtor.name, new Date(debtor.lastPaid), debtor.debts
       ? debtor.debts.map(debt => {
