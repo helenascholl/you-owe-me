@@ -9,16 +9,20 @@
 </div>
 
 <mat-card *ngFor="let payment of debtor?.getPayments()" [class.paid]="payment.paid">
-  <div [ngSwitch]="payment.debtType">
-    <mat-card-title *ngSwitchCase="debtType.MONTHLY">
-      {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
-    </mat-card-title>
-    <mat-card-title *ngSwitchCase="debtType.YEARLY">{{ payment.date.getFullYear() }}</mat-card-title>
-    <mat-card-title *ngSwitchDefault>
-      {{ weekdays[payment.date.getDay()] }}, {{ payment.date.getDate() }}.
-      {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
-    </mat-card-title>
-  </div>
+  <mat-card-title>
+    <div [ngSwitch]="payment.debtType">
+      <span *ngSwitchCase="debtType.MONTHLY">
+        {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
+      </span>
+        <span *ngSwitchCase="debtType.YEARLY">{{ payment.date.getFullYear() }}</span>
+        <span *ngSwitchDefault>
+        {{ weekdays[payment.date.getDay()] }}, {{ payment.date.getDate() }}.
+          {{ months[payment.date.getMonth()] }} {{ payment.date.getFullYear() }}
+      </span>
+    </div>
+
+    <button mat-stroked-button color="primary" (mouseup)="payUntil(payment.date)" class="pay-until-button">Pay</button>
+  </mat-card-title>
   <mat-card-subtitle>{{ payment.date.toLocaleDateString(environment.locale) }}</mat-card-subtitle>
   <mat-card-content>{{ payment.amount }}{{ environment.currencySymbol }}</mat-card-content>
 </mat-card>

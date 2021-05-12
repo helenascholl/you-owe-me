@@ -28,8 +28,12 @@ export class PaymentListComponent {
   ) { }
 
   public pay(): void {
+    this.payUntil(new Date(this.dateString));
+  }
+
+  public payUntil(date: Date): void {
     if (this.debtor) {
-      this.debtorService.payDebts(this.debtor.id, new Date(this.dateString));
+      this.debtorService.payDebts(this.debtor.id, date);
       this.snackBar.open('Paid Debts', 'Close', { duration: 2000 });
     }
   }

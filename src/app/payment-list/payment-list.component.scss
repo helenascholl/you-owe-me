@@ -20,6 +20,10 @@ mat-card {
   margin-left: 1em;
 }
 
+.pay-until-button {
+  float: right;
+}
+
 @media only screen and (max-aspect-ratio: 1/1) {
   mat-card {
     width: 70vw;
