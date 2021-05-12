@@ -1020,7 +1020,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./login/login.component */ "vtpD");
 /* harmony import */ var _angular_fire__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! @angular/fire */ "spgP");
 /* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/fire/database */ "sSZD");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_service_worker__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/service-worker */ "Jho9");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
 
 
 
@@ -1055,8 +1058,8 @@ __webpack_require__.r(__webpack_exports__);
 class AppModule {
 }
 AppModule.ɵfac = function AppModule_Factory(t) { return new (t || AppModule)(); };
-AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_29__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]] });
-AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_29__["ɵɵdefineInjector"]({ providers: [
+AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_30__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"]] });
+AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_30__["ɵɵdefineInjector"]({ providers: [
         { provide: _angular_material_core__WEBPACK_IMPORTED_MODULE_16__["MAT_DATE_LOCALE"], useValue: _environments_environment__WEBPACK_IMPORTED_MODULE_25__["environment"].locale },
         { provide: _angular_material_core__WEBPACK_IMPORTED_MODULE_16__["DateAdapter"], useClass: _angular_material_moment_adapter__WEBPACK_IMPORTED_MODULE_13__["MomentDateAdapter"], deps: [_angular_material_core__WEBPACK_IMPORTED_MODULE_16__["MAT_DATE_LOCALE"]] },
         { provide: _angular_material_core__WEBPACK_IMPORTED_MODULE_16__["MAT_DATE_FORMATS"], useValue: _angular_material_moment_adapter__WEBPACK_IMPORTED_MODULE_13__["MAT_MOMENT_DATE_FORMATS"] }
@@ -1081,9 +1084,13 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_29__["ɵɵdefineInjecto
             _angular_material_dialog__WEBPACK_IMPORTED_MODULE_24__["MatDialogModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_17__["ReactiveFormsModule"],
             _angular_fire__WEBPACK_IMPORTED_MODULE_27__["AngularFireModule"].initializeApp(_environments_environment__WEBPACK_IMPORTED_MODULE_25__["environment"].firebaseConfig),
-            _angular_fire_database__WEBPACK_IMPORTED_MODULE_28__["AngularFireDatabaseModule"]
+            _angular_fire_database__WEBPACK_IMPORTED_MODULE_28__["AngularFireDatabaseModule"],
+            _angular_service_worker__WEBPACK_IMPORTED_MODULE_29__["ServiceWorkerModule"].register('ngsw-worker.js', {
+                enabled: _environments_environment__WEBPACK_IMPORTED_MODULE_25__["environment"].production,
+                registrationStrategy: 'registerWhenStable:30000'
+            })
         ]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_29__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_30__["ɵɵsetNgModuleScope"](AppModule, { declarations: [_app_component__WEBPACK_IMPORTED_MODULE_2__["AppComponent"],
         _debtor_detail_debtor_detail_component__WEBPACK_IMPORTED_MODULE_3__["DebtorDetailComponent"],
         _debtor_list_debtor_list_component__WEBPACK_IMPORTED_MODULE_4__["DebtorListComponent"],
         _payment_list_payment_list_component__WEBPACK_IMPORTED_MODULE_19__["PaymentListComponent"],
@@ -1107,7 +1114,7 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_29__["ɵɵdefineInjecto
         _angular_material_select__WEBPACK_IMPORTED_MODULE_21__["MatSelectModule"],
         _angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_22__["MatSnackBarModule"],
         _angular_material_dialog__WEBPACK_IMPORTED_MODULE_24__["MatDialogModule"],
-        _angular_forms__WEBPACK_IMPORTED_MODULE_17__["ReactiveFormsModule"], _angular_fire__WEBPACK_IMPORTED_MODULE_27__["AngularFireModule"], _angular_fire_database__WEBPACK_IMPORTED_MODULE_28__["AngularFireDatabaseModule"]] }); })();
+        _angular_forms__WEBPACK_IMPORTED_MODULE_17__["ReactiveFormsModule"], _angular_fire__WEBPACK_IMPORTED_MODULE_27__["AngularFireModule"], _angular_fire_database__WEBPACK_IMPORTED_MODULE_28__["AngularFireDatabaseModule"], _angular_service_worker__WEBPACK_IMPORTED_MODULE_29__["ServiceWorkerModule"]] }); })();
 
 
 /***/ }),
