@@ -3,6 +3,7 @@ import { Debtor } from '../debtor';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from '../../environments/environment';
 import { DebtorService } from '../debtor.service';
+import { DebtType } from '../debt';
 
 @Component({
   selector: 'app-payment-list',
@@ -19,6 +20,7 @@ export class PaymentListComponent {
     'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
   ];
   public environment = environment;
+  public debtType = DebtType;
 
   constructor(
     private snackBar: MatSnackBar,
